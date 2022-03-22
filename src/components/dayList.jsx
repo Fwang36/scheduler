@@ -9,9 +9,9 @@ import DayListItem from "./DayListItem";
 
 
 export default function Daylist(props) {
-
+  console.log(props)
   const dayList = props.days.map((day) => {
-    
+
     return (
       <DayListItem
         key={day.key}
