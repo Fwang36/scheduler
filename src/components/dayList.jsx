@@ -4,7 +4,6 @@
 // setDay:Function accepts the name of the day eg. "Monday", "Tuesday"
 
 import React from "react";
-import classNames from "classnames";
 import DayListItem from "./DayListItem";
 
 
