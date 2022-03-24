@@ -1,4 +1,4 @@
-export const formatSpots = (spot) => {
+export default function formatSpots(spot) {
   let result;
   if (spot === 0) {
     result = "no spots remaining"
@@ -9,3 +9,5 @@ export const formatSpots = (spot) => {
   }
   return result
 } 
+
+

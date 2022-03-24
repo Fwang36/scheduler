@@ -7,7 +7,7 @@ import React from "react";
 import "components/DayListItem.scss"
 
 import classNames from "classnames";
-import { formatSpots } from "./helpers";
+import formatSpots from "helpers/formatSpots";
 export default function DayListItem(props) {
 
   let dayClass = classNames("day-list__item", {
