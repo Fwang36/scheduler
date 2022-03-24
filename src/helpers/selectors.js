@@ -2,9 +2,10 @@ export function getAppointmentsForDay(state, day) {
   let result = []
   let result2 = []
   state.days.map(dayObj => {
-    if (dayObj.name == day) {
+    if (dayObj.name === day) {
       result = dayObj.appointments
     }
+    return result
   })
   for (let item of result) {
     if (state.appointments[item]) {
