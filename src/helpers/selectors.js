@@ -30,3 +30,25 @@ export function getInterview(state, interview) {
 
 
 }
+
+export function getInterviewersForDay(state, day) {
+  let result = []
+  let result2 = []
+  let result3 = []
+  state.days.map(dayObj => {
+    if (dayObj.name === day) {
+      result = dayObj.appointments
+    }
+    return result
+  })
+  for (let item of result) {
+    if (state.appointments[item].interview) {
+      result3.push(state.appointments[item].interview.interviewer)
+    }
+  }
+  for (let item of result3) {
+    result2.push(state.interviewers[item])
+  }
+  console.log(result2)
+  return result2;
+}
