@@ -74,6 +74,7 @@ export default function Application(props) {
       interviewer={interviewers}
       interview = {interview}
       bookInterview = {bookInterview}
+      deleteInterview = {deleteInterview}
       {...appointment}
     />
   })
@@ -106,6 +107,14 @@ export default function Application(props) {
       .then(res => {
         console.log(res)
         setAppointments(appointments)
+      })
+      .catch(error => console.error(error))
+  }
+
+  function deleteInterview(id) {
+
+    return axios.delete(`/api/appointments/${id}`)
+      .then(res => {
       })
       .catch(error => console.error(error))
   }
