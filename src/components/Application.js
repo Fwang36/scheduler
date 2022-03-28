@@ -8,7 +8,8 @@ import Appointment from "./Appointment";
 
 import axios from "axios";
 
-import { getAppointmentsForDay, getInterview } from "helpers/selectors";
+import { useVisualMode } from "hooks/useVisualMode";
+import { getAppointmentsForDay, getInterview, getInterviewersForDay } from "helpers/selectors";
 
 // const appointments = {
 //   "1": {
@@ -52,13 +53,13 @@ import { getAppointmentsForDay, getInterview } from "helpers/selectors";
 export default function Application(props) {
 
   const [state, setState] = useState({
-    day: "Monday",
+    day: "",
     days: [],
     appointments: {},
     interviewers: {}
   })
   const dailyAppointments = getAppointmentsForDay(state, state.day);
-
+  
   const setDay = day => setState({ ...state, day });
   const setDays = days => setState(prev => ({...prev, days}));
   const setAppointments = appointments => setState(prev => ({...prev, appointments}))
@@ -66,11 +67,12 @@ export default function Application(props) {
   
   const appointmentArr = dailyAppointments.map((appointment) => {
     const interview = getInterview(state, appointment.interview);
-    console.log(interview)
-    console.log(appointment)
+    const interviewers = getInterviewersForDay(state, state.day);
    return  <Appointment
       key={appointment.id}
+      interviewer={interviewers}
       interview = {interview}
+      bookInterview = {bookInterview}
       {...appointment}
     />
   })
@@ -82,12 +84,29 @@ export default function Application(props) {
       axios.get('/api/interviewers')
     ])
     .then((all) => {
-      console.log(all)
       setDays(all[0].data)
       setAppointments(all[1].data)
       setInterviewers(all[2].data)
     })
   }, [])
+
+  function bookInterview(id, interview) {
+
+    const appointment = {
+      ...state.appointments[id],
+      interview: { student: interview, interviewer: id}
+    };
+    const appointments = {
+      ...state.appointments,
+      [id]: appointment
+    };
+    console.log("app",appointment)
+    console.log("apps",appointments)
+    setAppointments(appointments)
+
+  }
+
+
   return (
     
     <main className="layout">

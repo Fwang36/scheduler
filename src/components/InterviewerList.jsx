@@ -5,12 +5,11 @@
 //   { id: 4, name: "Cohana Roy", avatar: "https://i.imgur.com/FK8V841.jpg" },
 //   { id: 5, name: "Sven Jones", avatar: "https://i.imgur.com/twYrpay.jpg" }
 // ];
-import React, {useState} from 'react'
+import React from 'react'
 import InterviewerListItem from './InterviewerListItem'
 import 'components/InterviewerList.scss'
 
 export default function InterviewerList(props) {
-console.log(props)
   const intList = props.interviewers.map((interviewer) => {
 
     return (

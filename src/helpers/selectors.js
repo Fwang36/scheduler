@@ -41,14 +41,17 @@ export function getInterviewersForDay(state, day) {
     }
     return result
   })
+
   for (let item of result) {
     if (state.appointments[item].interview) {
       result3.push(state.appointments[item].interview.interviewer)
     }
   }
-  for (let item of result3) {
+
+  let filtered = [...new Set(result3)]
+  
+  for (let item of filtered) {
     result2.push(state.interviewers[item])
   }
-  console.log(result2)
   return result2;
 }

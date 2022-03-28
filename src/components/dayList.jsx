@@ -13,7 +13,7 @@ export default function Daylist(props) {
 
     return (
       <DayListItem
-        key={day.key}
+        key={day.name}
         name={day.name}
         spots={day.spots}
         selected={day.name === props.value}

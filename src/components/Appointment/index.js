@@ -5,7 +5,7 @@ import Show from './Show';
 import Empty from './Empty';
 import { useVisualMode } from 'hooks/useVisualMode';
 import Form from './Form';
-import { getInterviewersForDay } from 'helpers/selectors';
+// import { getInterviewersForDay } from 'helpers/selectors';
 
 export default function Appointment(props) {
   const EMPTY = "EMPTY";
@@ -14,6 +14,17 @@ export default function Appointment(props) {
   const {mode, transition, back} = useVisualMode(
     props.interview ? SHOW : EMPTY
   )
+
+  const save = (name, interviewer) => {
+    console.log(name)
+    const interview = {
+      student: name,
+      interviewer
+    }
+    transition(SHOW)
+  }
+
+
   return (
 
     <article className="appointment">
@@ -30,8 +41,10 @@ export default function Appointment(props) {
         <Form 
           name={props.name}
           value={props.value}
-          interviewers={() => getInterviewersForDay(props.day)}
+          interviewers={props.interviewer}
           onCancel={back}
+          onSave={save}
+          bookInterview={props.bookInterview}
         />
 
       )}
