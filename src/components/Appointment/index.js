@@ -7,6 +7,7 @@ import { useVisualMode } from 'hooks/useVisualMode';
 import Form from './Form';
 import Status from './Status';
 import Confirm from './Confirm';
+import Error from './Error';
 // import { getInterviewersForDay } from 'helpers/selectors';
 
 export default function Appointment(props) {
@@ -16,7 +17,9 @@ export default function Appointment(props) {
   const SAVING = "SAVING";
   const DELETING = "DELETING";
   const CONFIRM = "CONFIRM";
-  const EDIT = "EDIT"
+  const EDIT = "EDIT";
+  const ERROR_SAVE = "ERROR_SAVE";
+  const ERROR_DELETE = "ERROR_DELETE";
 
   const {mode, transition, back} = useVisualMode(
     props.interview ? SHOW : EMPTY
@@ -30,15 +33,17 @@ export default function Appointment(props) {
     props.bookInterview(interviewer, interview.student, appointmentID).then((res => {
       transition(SHOW)
     }))
+    .catch(() => transition(ERROR_SAVE, true))
   }
 
   const del = (id) => {
-    transition(DELETING)
+    transition(DELETING, true)
     props.deleteInterview(id)
       .then((res) => {
         console.log("success")
         transition(EMPTY)
       })
+      .catch(() => transition(ERROR_DELETE, true))
   }
 
   function edit() {
@@ -85,6 +90,20 @@ export default function Appointment(props) {
         bookInterview={props.bookInterview}
         />
         )}
+      {mode === ERROR_SAVE && (
+        <Error 
+          message="Could not create appointment"
+          onClose={back}
+          />
+      )}
+      {mode === ERROR_DELETE && (
+        <Error
+          message="Could not cancel appointment"
+          onClose={back}
+        />  
+      )}
+
+        
     </article>
 
   )

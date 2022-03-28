@@ -41,7 +41,6 @@ export default function Form(props) {
       interviewers={props.interviewers}
       value={interviewer}
       onChange={(e) => setInterviewer(e)}
-      selected={props.selected}
     />
   </section>
   <section className="appointment__card-right">
