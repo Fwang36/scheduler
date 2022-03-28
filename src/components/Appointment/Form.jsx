@@ -28,7 +28,7 @@ export default function Form(props) {
         className="appointment__create-input text--semi-bold"
         name={props.student}
         onChange={(e) => setStudent(e.target.value)}
-        value={student}
+        value={props.value ? props.value : student}
         type="text"
         placeholder="Enter Student Name"
         /*
@@ -41,7 +41,7 @@ export default function Form(props) {
       interviewers={props.interviewers}
       value={interviewer}
       onChange={(e) => setInterviewer(e)}
-
+      selected={props.selected}
     />
   </section>
   <section className="appointment__card-right">
