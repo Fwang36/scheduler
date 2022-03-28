@@ -15,7 +15,7 @@ export default function InterviewerList(props) {
     return (
     
     <InterviewerListItem 
-      key={interviewer.id}
+      key={interviewer.name}
       id={interviewer.id}
       name={interviewer.name}
       avatar={interviewer.avatar}

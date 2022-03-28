@@ -14,14 +14,14 @@ export default function Appointment(props) {
   const {mode, transition, back} = useVisualMode(
     props.interview ? SHOW : EMPTY
   )
-
-  const save = (name, interviewer) => {
-    console.log(name)
+  const save = (name, interviewer, appointmentID) => {
     const interview = {
       student: name,
       interviewer
     }
-    transition(SHOW)
+    props.bookInterview(interviewer, interview.student, appointmentID).then((res => {
+      transition(SHOW)
+    }))
   }
 
 
@@ -38,7 +38,8 @@ export default function Appointment(props) {
         />
       )}
       {mode === CREATE && (
-        <Form 
+        <Form
+          id={props.id} 
           name={props.name}
           value={props.value}
           interviewers={props.interviewer}
