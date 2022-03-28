@@ -48,10 +48,7 @@ export default function Form(props) {
     <section className="appointment__actions">
       <Button danger onClick={cancel}>Cancel</Button>
       <Button confirm onClick={() => {
-        console.log("interviewer",interviewer)
-        console.log("id", props)
         props.onSave(student, interviewer, props.id)
-        console.log("passed", student, interviewer, props.id)
         }}>Save</Button>
     </section>
   </section>
