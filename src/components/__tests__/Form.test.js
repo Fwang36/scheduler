@@ -46,7 +46,7 @@ describe("Form", () => {
     expect(onSave).toHaveBeenCalledTimes(1);
   
     /* 5. onSave is called with the correct arguments */
-    expect(onSave).toHaveBeenCalledWith("Lydia Miller-Jones", null);
+    expect(onSave).toHaveBeenCalledWith("Lydia Miller-Jones", interviewers, undefined);
   });
 });
 
