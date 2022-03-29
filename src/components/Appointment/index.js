@@ -30,20 +30,28 @@ export default function Appointment(props) {
       interviewer
     }
     transition(SAVING)
-    props.bookInterview(interviewer, interview.student, appointmentID).then((res => {
+    props.bookInterview(interviewer, interview.student, appointmentID)
+    .then(res => {
       transition(SHOW)
-    }))
-    .catch(() => transition(ERROR_SAVE, true))
+    })
+    .catch(error => {
+    console.log(error)
+    transition(ERROR_SAVE, true)
+  })
   }
+
 
   const del = (id) => {
     transition(DELETING, true)
     props.deleteInterview(id)
-      .then((res) => {
-        console.log("success")
-        transition(EMPTY)
-      })
-      .catch(() => transition(ERROR_DELETE, true))
+    .then(res => {
+      console.log("success")
+      transition(EMPTY)
+    })
+    .catch(error => {
+      console.log(error)
+      transition(ERROR_DELETE, true)
+    })
   }
 
   function edit() {

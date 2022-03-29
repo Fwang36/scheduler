@@ -16,7 +16,7 @@ export default function useApplicationData(props) {
   const setInterviewers = interviewers => setState(prev => ({...prev, interviewers}))
 
 
-  useEffect(() => {
+  useEffect(() => { 
     Promise.all([
       axios.get('/api/days'),
       axios.get('/api/appointments'),
@@ -46,7 +46,6 @@ export default function useApplicationData(props) {
         console.log(res)
         setAppointments(appointments)
       })
-      .catch(error => console.error(error))
   }
 
   function deleteInterview(id) {
@@ -54,7 +53,6 @@ export default function useApplicationData(props) {
     return axios.delete(`/api/appointments/${id}`)
       .then(res => {
       })
-      .catch(error => console.error(error))
   }
 
 
