@@ -4,7 +4,7 @@ import axios from 'axios';
 export default function useApplicationData(props) {
 
   const [state, setState] = useState({
-    day: "Monday",
+    day: "",
     days: [],
     appointments: {},
     interviewers: {}
@@ -41,7 +41,7 @@ export default function useApplicationData(props) {
       [appointmentID]: appointment
     };
 
-    const newState = {
+    const updatedState = {
       ...state,
       appointments,
     };
@@ -50,7 +50,7 @@ export default function useApplicationData(props) {
  return axios.put(`/api/appointments/${appointmentID}`, appointment)
       .then(res => {     
         console.log("saved", state.appointments)
-        updateSpots(newState, id)
+        updateSpots(updatedState, appointmentID)
       })
 
   }
@@ -67,7 +67,7 @@ export default function useApplicationData(props) {
        [id]: appointment
      };
 
-     const newState = {
+     const updatedState = {
       ...state,
       appointments,
     };
@@ -76,24 +76,20 @@ export default function useApplicationData(props) {
      .then(res => {
        console.log("Delete", appointments)
        setAppointments(appointments)
-       updateSpots(newState, id)
+       updateSpots(updatedState, id, true)
       })
   }
 
-  const updateSpots = function (state, id) {
-    const currentDay = state.days.find((d) => d.appointments.includes(id));
-  
-    const nullAppointments = currentDay.appointments.filter(id => !state.appointments[id].interview) 
-    const spots = nullAppointments.length 
+  const updateSpots = function (state, id, increase = false) {
+    const curDay = state.days.find(day => day.appointments.includes(id))
 
+    if (increase) {
+    curDay.spots++
+  } else {
+    curDay.spots--
+  }
+    setState({...state, curDay})
 
-    const newDay = { ...currentDay, spots };
-
-    const newDays = state.days.map((d) => { return d.name === state.day ? newDay : d});
-
-    setState({ ...state, days: newDays });
-
-    return newDays;
   };
 
 
