@@ -60,7 +60,7 @@ export default function Appointment(props) {
     }
     
     function edit() {
-      transition(EDIT);
+      transition(EDIT, true);
     }
     
     
@@ -69,7 +69,7 @@ export default function Appointment(props) {
       <article className="appointment">
       <Header time={props.time}/>
 
-      {mode === EMPTY && <Empty onAdd={() => transition(CREATE)} />}
+      {mode === EMPTY && <Empty onAdd={() => transition(CREATE, true)} />}
       {mode === SAVING && <Status message="Saving" /> }
       {mode === DELETING && <Status message="Deleting" />}
       {mode === CONFIRM && 
