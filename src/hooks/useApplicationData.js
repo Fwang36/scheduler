@@ -11,9 +11,9 @@ export default function useApplicationData(props) {
   })
 
   const setDay = day => setState({ ...state, day });
-  const setDays = days => setState(prev => ({...prev, days}));
+  // const setDays = days => setState(prev => ({...prev, days}));
   const setAppointments = appointments => setState(prev => ({...prev, appointments}))
-  const setInterviewers = interviewers => setState(prev => ({...prev, interviewers}))
+  // const setInterviewers = interviewers => setState(prev => ({...prev, interviewers}))
 
 
   useEffect(() => { 
@@ -23,12 +23,13 @@ export default function useApplicationData(props) {
       axios.get('/api/interviewers')
     ])
     .then((all) => {
-      setDays(all[0].data)
-      setAppointments(all[1].data)
-      setInterviewers(all[2].data)
+      setState(prev => ({...prev, 
+        days: all[0].data,
+        appointments: all[1].data,
+        interviewers: all[2].data}))
     })
   }, [])
-
+  
 
   function bookInterview(id, interview, appointmentID) {
 
@@ -56,7 +57,8 @@ export default function useApplicationData(props) {
   }
 
   function deleteInterview(id) {
-
+    console.log("interviewers",state.interviewers)
+    console.log("appointments",state.appointments)
     const appointment = {
       ...state.appointments[id],
       interview: null
