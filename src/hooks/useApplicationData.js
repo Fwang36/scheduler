@@ -40,21 +40,61 @@ export default function useApplicationData(props) {
       ...state.appointments,
       [appointmentID]: appointment
     };
-    
-    return axios.put(`/api/appointments/${appointmentID}`, appointment)
-      .then(res => {
-        console.log(res)
-        setAppointments(appointments)
+
+    const newState = {
+      ...state,
+      appointments,
+    };
+    setAppointments(appointments)
+
+ return axios.put(`/api/appointments/${appointmentID}`, appointment)
+      .then(res => {     
+        console.log("saved", state.appointments)
+        updateSpots(newState, id)
       })
+
   }
 
   function deleteInterview(id) {
 
-    return axios.delete(`/api/appointments/${id}`)
-      .then(res => {
+    const appointment = {
+      ...state.appointments[id],
+      interview: null
+    };
+  
+     const appointments = {
+       ...state.appointments,
+       [id]: appointment
+     };
+
+     const newState = {
+      ...state,
+      appointments,
+    };
+     
+     return axios.delete(`/api/appointments/${id}`)
+     .then(res => {
+       console.log("Delete", appointments)
+       setAppointments(appointments)
+       updateSpots(newState, id)
       })
   }
 
+  const updateSpots = function (state, id) {
+    const currentDay = state.days.find((d) => d.appointments.includes(id));
+  
+    const nullAppointments = currentDay.appointments.filter(id => !state.appointments[id].interview) 
+    const spots = nullAppointments.length 
+
+
+    const newDay = { ...currentDay, spots };
+
+    const newDays = state.days.map((d) => { return d.name === state.day ? newDay : d});
+
+    setState({ ...state, days: newDays });
+
+    return newDays;
+  };
 
 
   return {state, setDay, bookInterview, deleteInterview}

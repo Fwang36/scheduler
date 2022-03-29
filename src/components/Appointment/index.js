@@ -45,6 +45,7 @@ export default function Appointment(props) {
     transition(DELETING, true)
     props.deleteInterview(id)
     .then(res => {
+
       console.log("success")
       transition(EMPTY)
     })
