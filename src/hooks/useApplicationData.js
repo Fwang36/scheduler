@@ -4,7 +4,7 @@ import axios from 'axios';
 export default function useApplicationData(props) {
 
   const [state, setState] = useState({
-    day: "",
+    day: "Monday",
     days: [],
     appointments: {},
     interviewers: {}
@@ -84,10 +84,10 @@ export default function useApplicationData(props) {
     const curDay = state.days.find(day => day.appointments.includes(id))
 
     if (increase) {
-    curDay.spots++
-  } else {
-    curDay.spots--
-  }
+      curDay.spots++
+    } else {
+      curDay.spots--
+    }
     setState({...state, curDay})
 
   };

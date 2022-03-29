@@ -24,16 +24,14 @@ export default function Form(props) {
   <section className="appointment__card-left">
     <form autoComplete="off" onSubmit={event => event.preventDefault()}>
       <input
+      
         className="appointment__create-input text--semi-bold"
-        name={props.student}
-        onChange={(e) => setStudent(e.target.value)}
-        value={props.value ? props.value : student}
-        type="text"
+        name="student"
         placeholder="Enter Student Name"
-        /*
-          This must be a controlled component
-          your code goes here
-        */
+        value={student}
+        onChange={(e) => setStudent(e.target.value)}
+        data-testid="student-name-input"
+
       />
     </form>
     <InterviewerList 
