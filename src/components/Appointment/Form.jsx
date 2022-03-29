@@ -4,10 +4,10 @@ import InterviewerList from 'components/InterviewerList'
 
 
 export default function Form(props) {
-  console.log("PRRRR", props.student)
+  console.log("PRRRR", props)
 
-  const [student, setStudent] = useState(props.student || "");
-  const [interviewer, setInterviewer] = useState(props.interviewers || null);
+  const [student, setStudent] = useState(props.interview ? props.interview.student : "");
+  const [interviewer, setInterviewer] = useState(props.interview ? props.interview.interviewer.id : null);
   const [error, setError] = useState("");
   const reset = () => {
     setStudent("") 
@@ -52,7 +52,7 @@ export default function Form(props) {
       value={interviewer}
       onChange={(e) => setInterviewer(e)}
     />
-    
+
   </section>
   <section className="appointment__card-right">
     <section className="appointment__actions">
