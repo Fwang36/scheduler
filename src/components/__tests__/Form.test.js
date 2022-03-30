@@ -15,6 +15,16 @@ describe("Form", () => {
     }
   ];
 
+  const interview = {
+    interviewer: interviewers[0],
+    student: "Lydia Miller-Jones"
+
+  }
+
+
+
+
+
   it("renders without student name if not provided", () => {
     const { getByPlaceholderText } = render(<Form interviewers={interviewers} />);
 
@@ -22,8 +32,9 @@ describe("Form", () => {
   });
 
   it("renders with initial student name", () => {
-    const { getByTestId } = render(<Form interviewers={interviewers} student="Lydia Miller-Jones" />);
-    
+    const { getByTestId } = render(<Form interviewers={interviewers} interview={interview} />);
+    console.log("log,", getByTestId("student-name-input"))
+
     expect(getByTestId("student-name-input")).toHaveValue("Lydia Miller-Jones");
   });
 
@@ -38,7 +49,7 @@ describe("Form", () => {
   
   it("calls onSave function when the name is defined", () => {
     const onSave = jest.fn()
-    const {queryByText, getByText} = render(<Form interviewers={interviewers} student="Lydia Miller-Jones" onSave={onSave}/>)
+    const {queryByText, getByText} = render(<Form interviewers={interviewers} interview={interview} onSave={onSave}/>)
     fireEvent.click(getByText("Save"))
 
     expect(queryByText(/student name cannot be blank/i)).toBeNull();
@@ -46,7 +57,7 @@ describe("Form", () => {
     expect(onSave).toHaveBeenCalledTimes(1);
   
     /* 5. onSave is called with the correct arguments */
-    expect(onSave).toHaveBeenCalledWith("Lydia Miller-Jones", interviewers, undefined);
+    expect(onSave).toHaveBeenCalledWith("Lydia Miller-Jones", 1, undefined);
   });
 });
 

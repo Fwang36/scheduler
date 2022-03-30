@@ -26,6 +26,7 @@ export function useVisualMode(initial) {
   const back = function() {
     let newHistory = [...history]
     setMode(newHistory[newHistory.length - 1])
+    newHistory.pop(mode)
     setHistory(prev => newHistory)
   }
 
