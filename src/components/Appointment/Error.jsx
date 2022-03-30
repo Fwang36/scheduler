@@ -1,3 +1,4 @@
+//Component displays error when unable to delete or save
 import React from 'react';
 
 export default function Error(props) {
@@ -10,13 +11,13 @@ export default function Error(props) {
         <h3 className="text--light">{props.message}</h3>
       </section>
       <img
-      className="appointment__error-close"
-      src="images/close.png"
-      alt="Close"
-      onClick={props.onClose}
+        className="appointment__error-close"
+        src="images/close.png"
+        alt="Close"
+        onClick={props.onClose}
       />
     </main>
 
-  )
+  );
 
 }

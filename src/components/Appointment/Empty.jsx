@@ -1,4 +1,5 @@
-import React from 'react'
+//Component for when no appointments are scheduled
+import React from 'react';
 
 export default function Empty(props) {
 
@@ -11,6 +12,6 @@ export default function Empty(props) {
         onClick={props.onAdd}
       />
     </main>
-  )
+  );
 
 }
