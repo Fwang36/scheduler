@@ -6,8 +6,15 @@ Interview Scheduler is a single page application for scheduling interviews.  Stu
 
 ## Screenshots
 
-
+### Application Start
 !["Main Page](https://github.com/Fwang36/scheduler/blob/master/docs/main.png)
+
+### Create Appointment Form
+!["Form"](https://github.com/Fwang36/scheduler/blob/master/docs/createAppointmentForm.png)
+
+### Delete Appointment Confirmation
+
+!["Confirm"](https://github.com/Fwang36/scheduler/blob/master/docs/deleteConfirmation.png)
 
 ## Setup
 
