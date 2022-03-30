@@ -7,34 +7,32 @@ import Appointment from "./Appointment";
 import { getAppointmentsForDay, getInterview, getInterviewersForDay } from "helpers/selectors";
 import useApplicationData from "hooks/useApplicationData";
 
-export default function Application(props) {
+export default function Application() {
 
-  const {state, setDay, bookInterview, deleteInterview} = useApplicationData();
-  const dailyAppointments = getAppointmentsForDay(state, state.day);
-  const interviewers = getInterviewersForDay(state, state.day);
-  
-  console.log("daily",dailyAppointments)
-  
+  const { state, setDay, bookInterview, deleteInterview } = useApplicationData();
+  const dailyAppointments = getAppointmentsForDay(state, state.day);  //array of selected day's appointments
+  const interviewers = getInterviewersForDay(state, state.day); //array of selected day's interviewers
+
+  //maps and displays appointments for selected day
   const appointmentArr = dailyAppointments.map((appointment) => {
     const interview = getInterview(state, appointment.interview);
-    console.log(interview)
-    console.log("interviewers", interviewers)
-   return  <Appointment
+
+    return <Appointment
       key={appointment.id}
       {...appointment}
       id={appointment.id}
       interviewers={interviewers}
-      bookInterview = {bookInterview}
-      deleteInterview = {deleteInterview}
+      bookInterview={bookInterview}
+      deleteInterview={deleteInterview}
       interview={interview}
 
     />
-  })
+  });
 
 
 
   return (
-    
+
     <main className="layout">
       <section className="sidebar">
         <img
@@ -44,12 +42,12 @@ export default function Application(props) {
         />
         <hr className="sidebar__separator sidebar--centered" />
         <nav className="sidebar__menu">
-          
+  {/* displays list of days on side */}
           <Daylist
             days={state.days}
             value={state.day}
             onChange={setDay}
-            />
+          />
         </nav>
         <img
           className="sidebar__lhl sidebar--centered"
@@ -62,7 +60,7 @@ export default function Application(props) {
         <Appointment key="last" time="5pm" />
 
       </section>
-      
+
     </main>
 
 

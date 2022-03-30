@@ -1,12 +1,7 @@
-// name:String the name of the day
-// spots:Number the number of spots remaining
-// selected:Boolean true or false declaring that this day is selected
-// setDay:Function accepts the name of the day eg. "Monday", "Tuesday"
-
 import React from "react";
 import DayListItem from "./DayListItem";
 
-
+//maps and displays list of days
 export default function Daylist(props) {
 
   const dayList = props.days.map((day) => {
@@ -19,10 +14,10 @@ export default function Daylist(props) {
         selected={day.name === props.value}
         setDay={props.onChange}
         />
-    )
-  })
+    );
+  });
   return (
     <ul>{dayList}</ul>
-  )
+  );
 
 } 
