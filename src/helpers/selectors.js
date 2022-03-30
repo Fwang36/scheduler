@@ -1,44 +1,44 @@
-
-
+//returns array of appointment ids of selected day
 export function getAppointmentsForDay(state, day) {
   let result = []
   let result2 = []
   state.days.map(dayObj => {
     if (dayObj.name === day) {
-      result = dayObj.appointments
+      result = dayObj.appointments;
     }
-    return result
-  })
+    return result;
+  });
   for (let item of result) {
     if (state.appointments[item]) {
-      result2.push(state.appointments[item])
+      result2.push(state.appointments[item]);
     }
   }
   return result2;
 }
 
+//appends interview.interviewer object with interviewer information
 export function getInterview(state, interview) {
-  // console.log("interviewers obj", state.interviewers[interview.interviewer])
   if (!interview) {
-    return null
+    return null;
   } else {
-      interview = {
+    interview = {
       student: interview.student,
-      interviewer: state.interviewers[interview.interviewer] 
+      interviewer: state.interviewers[interview.interviewer]
     }
   }
-  return interview
+  return interview;
 }
 
+//gets array of available interviewers of selected day
 export function getInterviewersForDay(state, day) {
   let result = []
   let result2 = []
   let result3 = []
   state.days.map(dayObj => {
     if (dayObj.name === day) {
-      result = dayObj.appointments
+      result = dayObj.appointments;
     }
-    return result
+    return result;
   })
 
   for (let item of result) {
@@ -47,10 +47,10 @@ export function getInterviewersForDay(state, day) {
     }
   }
 
-  let filtered = [...new Set(result3)]
-  
+  let filtered = [...new Set(result3)];
+
   for (let item of filtered) {
-    result2.push(state.interviewers[item])
+    result2.push(state.interviewers[item]);
   }
   return result2;
 }
