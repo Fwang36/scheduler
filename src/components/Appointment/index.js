@@ -35,7 +35,7 @@ export default function Appointment(props) {
         interviewer
       };
       transition(SAVING);
-      props.bookInterview(interviewer, interview.student, appointmentID)
+      props.bookInterview(interviewer, interview.student, appointmentID, mode === EDIT ? "no update" : null)
         .then(res => {
           transition(SHOW, true);
         })
