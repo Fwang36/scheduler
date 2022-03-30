@@ -48,7 +48,7 @@ export default function Appointment(props) {
   //removes appointment and updates state
   //transitions to mode EMPTY on completion
   const del = (id) => {
-    transition(DELETING);
+    transition(DELETING, true);
     props.deleteInterview(id)
       .then(res => {
         transition(EMPTY);
@@ -82,7 +82,7 @@ export default function Appointment(props) {
           student={props.interview.student}
           interview={props.interview}
           interviewers={props.interviewers}
-          onDelete={() => transition(CONFIRM)}
+          onDelete={() => transition(CONFIRM, true)}
           onEdit={edit}
         />
       )}
