@@ -4,6 +4,11 @@
 
 Interview Scheduler is a single page application for scheduling interviews.  Students can select the day and time slot and see available interviewers for the day.  Application is created through React and uses PostgreSQL to persist data.
 
+## Screenshots
+
+
+!["Main Page](https://github.com/Fwang36/scheduler/blob/master/docs/main.png)
+
 ## Setup
 
 Install dependencies with `npm install`.
