@@ -9,17 +9,18 @@ import Status from './Status';
 import Confirm from './Confirm';
 import Error from './Error';
 
+const EMPTY = "EMPTY";
+const SHOW = "SHOW";
+const CREATE = "CREATE";
+const SAVING = "SAVING";
+const DELETING = "DELETING";
+const CONFIRM = "CONFIRM";
+const EDIT = "EDIT";
+const ERROR_SAVE = "ERROR_SAVE";
+const ERROR_DELETE = "ERROR_DELETE";
+
 export default function Appointment(props) {
   //modes
-  const EMPTY = "EMPTY";
-  const SHOW = "SHOW";
-  const CREATE = "CREATE";
-  const SAVING = "SAVING";
-  const DELETING = "DELETING";
-  const CONFIRM = "CONFIRM";
-  const EDIT = "EDIT";
-  const ERROR_SAVE = "ERROR_SAVE";
-  const ERROR_DELETE = "ERROR_DELETE";
 
   const { mode, transition, back } = useVisualMode(
     props.interview ? SHOW : EMPTY
@@ -37,7 +38,7 @@ export default function Appointment(props) {
       transition(SAVING);
       props.bookInterview(interviewer, interview.student, appointmentID, mode === EDIT ? "no update" : null)
         .then(res => {
-          transition(SHOW, true);
+          transition(SHOW);
         })
         .catch(error => {
           transition(ERROR_SAVE, true);
@@ -69,7 +70,7 @@ export default function Appointment(props) {
       <Header time={props.time} />
 
       {/* all mode transitions */}
-      {mode === EMPTY && <Empty onAdd={() => transition(CREATE, true)} />}
+      {mode === EMPTY && <Empty onAdd={() => transition(CREATE)} />}
       {mode === SAVING && <Status message="Saving" />}
       {mode === DELETING && <Status message="Deleting" />}
       {mode === CONFIRM &&

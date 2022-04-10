@@ -1,7 +1,7 @@
 import React from "react";
 import "components/Application.scss";
 
-import Daylist from "./DayList";
+import DayList from "./DayList";
 import Appointment from "./Appointment";
 
 import { getAppointmentsForDay, getInterview, getInterviewersForDay } from "helpers/selectors";
@@ -43,7 +43,7 @@ export default function Application() {
         <hr className="sidebar__separator sidebar--centered" />
         <nav className="sidebar__menu">
   {/* displays list of days on side */}
-          <Daylist
+          <DayList
             days={state.days}
             value={state.day}
             onChange={setDay}
