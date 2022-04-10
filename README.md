@@ -40,7 +40,7 @@ npm run storybook
 
 ## Api server
 
-Fork and clone the scheduler-api [here](https://github.com/lighthouse-labs/scheduler-api) run the server along with this interview scheduler concurrently to test out the features.
+Fork and clone the scheduler-api [here](https://github.com/lighthouse-labs/scheduler-api). Run this server along with this interview scheduler concurrently to test out the features.
 
 ## Depedencies
 
