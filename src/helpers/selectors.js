@@ -1,19 +1,20 @@
 //returns array of appointment ids of selected day
 export function getAppointmentsForDay(state, day) {
-  let result = []
-  let result2 = []
+  let dayAppointmentsArr = []
+  let appointmentArrWithInterviews = []
   state.days.map(dayObj => {
     if (dayObj.name === day) {
-      result = dayObj.appointments;
+      dayAppointmentsArr = dayObj.appointments;
     }
-    return result;
+    return dayAppointmentsArr;
+    
   });
-  for (let item of result) {
+  for (let item of dayAppointmentsArr) {
     if (state.appointments[item]) {
-      result2.push(state.appointments[item]);
+      appointmentArrWithInterviews.push(state.appointments[item]);
     }
   }
-  return result2;
+  return appointmentArrWithInterviews;
 }
 
 //appends interview.interviewer object with interviewer information

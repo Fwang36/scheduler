@@ -37,3 +37,16 @@ npm test
 ```sh
 npm run storybook
 ```
+
+## Api server
+
+Fork and clone the scheduler-api [here](https://github.com/lighthouse-labs/scheduler-api) run the server along with this interview scheduler concurrently to test out the features.
+
+## Depedencies
+
+- Axios
+- Classnames
+- Normalize.css
+- React
+- React-dom
+- React-scripts
