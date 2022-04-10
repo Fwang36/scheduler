@@ -37,12 +37,9 @@ export default function Appointment(props) {
       };
       transition(SAVING);
       props.bookInterview(interviewer, interview.student, appointmentID, mode === EDIT ? "no update" : null)
-        .then(res => {
-          transition(SHOW);
-        })
-        .catch(error => {
-          transition(ERROR_SAVE, true);
-        });
+      .then(()=>{transition(SHOW)})
+      .catch(()=>{transition(ERROR_SAVE,true)})
+
     }
   }
 

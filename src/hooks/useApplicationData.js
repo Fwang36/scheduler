@@ -45,8 +45,6 @@ export default function useApplicationData(props) {
       appointments,
     };
 
-    setAppointments(appointments);
-
     return axios.put(`/api/appointments/${appointmentID}`, appointment)
       .then(res => {
         updateSpots(updatedState, appointmentID, update === "no update" ? "no update" : false);
